@@ -1,0 +1,33 @@
+apply plugin: 'java'
+
+buildscript {
+    repositories {
+        google()
+        //noinspection JcenterRepositoryObsolete
+        jcenter()
+    }
+
+    dependencies  {
+        classpath 'com.android.tools.build:gradle:3.6.4'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+}
+
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
